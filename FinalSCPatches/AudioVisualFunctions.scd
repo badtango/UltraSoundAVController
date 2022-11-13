@@ -8,11 +8,13 @@ SynthDef(\Buffoveride, {  arg sens0 = 0, sens1 = 0, sens2 = 0,
                               sens3 = 0, sens4 = 0, sens5 = 0;
                           var imp, buf, woo, rev, env, com, hpf; 
                      
-                     imp = Impulse.kr(sens1);            	  	 	         buf = PlayBuf.ar(1, 0, sens0, BufRateScale.kr(0), trigger: imp, loop: 1);
-	                 woo = Pan2.ar(buf, 0, 0.5);      
-	                 rev = FreeVerb.ar(woo, sens2, sens2, 0.2, 0.5);       	                 env = EnvGen.kr(Env.perc(0.01, sens4, 0.5, -4), 1.0, doneAction: 2);
-	                 com = CombN.ar(rev, 0.01, sens5, mul: env);  
-	                 hpf = RHPF.ar(com, sens3, 0.3.wrap2(1) * 0.3);
+                     imp = Impulse.kr(sens1);            	  	 	         
+		     buf = PlayBuf.ar(1, 0, sens0, BufRateScale.kr(0), trigger: imp, loop: 1);
+	             woo = Pan2.ar(buf, 0, 0.5);      
+	             rev = FreeVerb.ar(woo, sens2, sens2, 0.2, 0.5);       	                 
+		     env = EnvGen.kr(Env.perc(0.01, sens4, 0.5, -4), 1.0, doneAction: 2);
+	             com = CombN.ar(rev, 0.01, sens5, mul: env);  
+	             hpf = RHPF.ar(com, sens3, 0.3.wrap2(1) * 0.3);
 	                      
 	                       Out.ar(0, hpf)}).send(s);
 
@@ -161,13 +163,14 @@ SynthDef(\noise, {  arg wh0 = 0, wh1 = 0, wh2 = 0,
                         wh3 = 0, wh4 = 0, wh5 = 0;
                     var imp, whn, env, com, bpf, rev, pan, hpf; 
                      
-                     imp = Impulse.kr(wh0, 0, 0.5);
-                     whn = WhiteNoise.ar(imp, 5.0);
-                     env = EnvGen.kr(Env.perc((wh5/1000), 0.2, 0.5, -5), 1.0, doneAction: 2);
+                     	 imp = Impulse.kr(wh0, 0, 0.5);
+                     	 whn = WhiteNoise.ar(imp, 5.0);
+                         env = EnvGen.kr(Env.perc((wh5/1000), 0.2, 0.5, -5), 1.0, doneAction: 2);
 	                 com = CombN.ar(whn, 0.01, wh3, mul: env);
 	                 bpf = BPF.ar(com, wh2, 0.5.wrap2(1) * 0.5);
 	                 rev = FreeVerb.ar(bpf, wh1, wh1, 0.8, 0.9); 
-	                 pan = Pan2.ar(rev, 0, 0.5);      	                 hpf = RHPF.ar(pan, wh4, 0.3.wrap2(1) * 0.3, 0.4);     
+	                 pan = Pan2.ar(rev, 0, 0.5);      	                 
+			 hpf = RHPF.ar(pan, wh4, 0.3.wrap2(1) * 0.3, 0.4);     
 	                       Out.ar(0, hpf)}).send(s);
 
 g.action = { 
