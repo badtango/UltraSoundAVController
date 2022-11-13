@@ -8,6 +8,6 @@ There are six sensors placed on every side of a project container, each feeding 
 
 There was a considerable amount of coding that took place to reach the final patch exhibited here, i’ve decided to only include the final patches as this project is too laborious to navigate otherwise. This patch features six different audio visual variants each triggered by a number on the computer keypad.
 
-Note: This patch is only functional with the aforementioned hardware.
+Note: These patches are only functional with the aforementioned hardware.
 
 
